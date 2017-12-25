@@ -30,18 +30,39 @@ require( {
 	}
 
 	function initObjects() {
-		//initialize geometry
-		var geometry = new THREE.Geometry();
-		geometry.vertices.push( new THREE.Vector3( - 10, 10, 0 ) );
-		geometry.vertices.push( new THREE.Vector3( 10 , 10, 0 ) );
-		geometry.vertices.push( new THREE.Vector3( 10, -10 , 0 ) );
-		geometry.vertices.push( new THREE.Vector3( -10, - 10, 0 ) );
-		geometry.vertices.push( new THREE.Vector3( -10, 10, 0 ) );
+		//Make face
+		var faceSize = 40;
+		var faceColor = 0x606060;
+		var faceX = 0;
+		var faceY = 0;
+		var faceZ = 0;
 
-		var material = new THREE.LineBasicMaterial( { color: 0x0000ff } );
+		var faceBox = new THREE.BoxGeometry( faceSize, faceSize, 1 );
+		var faceMesh = new THREE.MeshBasicMaterial( { color: faceColor } );
+		faceMesh.renderOrder = faceZ;
+		faceMesh.onBeforeRender = function( renderer ) { renderer.clearDepth(); };
+		var face = new THREE.Mesh( faceBox, faceMesh );
+		face.position.set( faceX, faceY, faceZ );
 
-		var line = new THREE.Line( geometry, material );
-		scene.add( line );
+		//Make eyes
+		var eyeRadius = 6;
+		var eyeColor = 0xffffffff;
+		var eyeX = 8;
+		var eyeY = 10;
+		var eyeZ = 1;
+		
+		var eyeCircle1 = new THREE.CircleGeometry( eyeRadius, 32 );
+		var eyeCircle2 = new THREE.CircleGeometry( eyeRadius, 32 );
+		var eyeMesh = new THREE.MeshBasicMaterial( { color : eyeColor } );
+		var eyeLeft = new THREE.Mesh( eyeCircle1, eyeMesh );
+		var eyeRight = new THREE.Mesh( eyeCircle2, eyeMesh );
+		eyeLeft.position.set( -1 * eyeX, eyeY, eyeZ );
+		eyeRight.position.set( eyeX, eyeY, eyeZ );
+		
+		//Add objects to scene
+		scene.add( face );
+		scene.add( eyeLeft );
+		scene.add( eyeRight );
 	}
 
 	function animate() {

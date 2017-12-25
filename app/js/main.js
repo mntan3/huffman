@@ -15,6 +15,7 @@ require( {
 	function initApp() {
 		//initialize scene
 		scene = new THREE.Scene();
+		scene.background = new THREE.Color( 0x606060 );
 		
 		//initialize camera
 		camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 500 );
@@ -30,26 +31,12 @@ require( {
 	}
 
 	function initObjects() {
-		//Make face
-		var faceSize = 40;
-		var faceColor = 0x606060;
-		var faceX = 0;
-		var faceY = 0;
-		var faceZ = 0;
-
-		var faceBox = new THREE.BoxGeometry( faceSize, faceSize, 1 );
-		var faceMesh = new THREE.MeshBasicMaterial( { color: faceColor } );
-		faceMesh.renderOrder = faceZ;
-		faceMesh.onBeforeRender = function( renderer ) { renderer.clearDepth(); };
-		var face = new THREE.Mesh( faceBox, faceMesh );
-		face.position.set( faceX, faceY, faceZ );
-
 		//Make eyes
-		var eyeRadius = 6;
-		var eyeColor = 0xffffffff;
+		var eyeRadius = 4;
+		var eyeColor = 0x000000;
 		var eyeX = 8;
 		var eyeY = 10;
-		var eyeZ = 1;
+		var eyeZ = 0;
 		
 		var eyeCircle1 = new THREE.CircleGeometry( eyeRadius, 32 );
 		var eyeCircle2 = new THREE.CircleGeometry( eyeRadius, 32 );
@@ -58,11 +45,24 @@ require( {
 		var eyeRight = new THREE.Mesh( eyeCircle2, eyeMesh );
 		eyeLeft.position.set( -1 * eyeX, eyeY, eyeZ );
 		eyeRight.position.set( eyeX, eyeY, eyeZ );
+
+		//Make mouth
+		var mouthColor = 0x000000
+		var mouthCurve = new THREE.QuadraticBezierCurve(
+			new THREE.Vector2( -10, 0 ),
+			new THREE.Vector2( 0, -15 ),
+			new THREE.Vector2( 10, 0 )
+		);
+
+		var mouthPoints = mouthCurve.getPoints( 50 );
+		var mouthGeometry = new THREE.BufferGeometry().setFromPoints( mouthPoints );
+		var mouthLine = new THREE.LineBasicMaterial( { color : mouthColor } );
+		var mouth = new THREE.Line( mouthGeometry, mouthLine );
 		
 		//Add objects to scene
-		scene.add( face );
 		scene.add( eyeLeft );
 		scene.add( eyeRight );
+		scene.add( mouth );
 	}
 
 	function animate() {

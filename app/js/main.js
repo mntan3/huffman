@@ -7,12 +7,14 @@ require( {
 ], function ( THREE ) {
 
 	var scene, camera, renderer;
+	var mouth;
 
-	initApp();
-	initObjects();
-	animate();
+	init();
+	setTimeout( function() {
+		animate();
+	}, 20 );
 
-	function initApp() {
+	function init() {
 		//initialize scene
 		scene = new THREE.Scene();
 		scene.background = new THREE.Color( 0x606060 );
@@ -27,10 +29,7 @@ require( {
 		renderer.setSize( window.innerWidth, window.innerHeight );
 
 		document.body.appendChild( renderer.domElement );
-
-	}
-
-	function initObjects() {
+		
 		//Make eyes
 		var eyeRadius = 4;
 		var eyeColor = 0x000000;
@@ -47,30 +46,37 @@ require( {
 		eyeRight.position.set( eyeX, eyeY, eyeZ );
 
 		//Make mouth
-		var mouthColor = 0x000000
+		var mouthColor = 0x000000;
 		var mouthCurve = new THREE.QuadraticBezierCurve(
-			new THREE.Vector2( -10, 0 ),
-			new THREE.Vector2( 0, -15 ),
-			new THREE.Vector2( 10, 0 )
+			new THREE.Vector2( -10, -2),
+			new THREE.Vector2( 0, -2 ),
+			new THREE.Vector2( 10, -2 )
 		);
 
 		var mouthPoints = mouthCurve.getPoints( 50 );
 		var mouthGeometry = new THREE.BufferGeometry().setFromPoints( mouthPoints );
-		var mouthLine = new THREE.LineBasicMaterial( { color : mouthColor } );
-		var mouth = new THREE.Line( mouthGeometry, mouthLine );
+		var mouthLine = new THREE.LineBasicMaterial( {
+			color: mouthColor,
+			linewidth: 4
+		} );
+		mouth = new THREE.Line( mouthGeometry, mouthLine );
+		mouth.curve = mouthCurve;
 		
 		//Add objects to scene
 		scene.add( eyeLeft );
 		scene.add( eyeRight );
 		scene.add( mouth );
+
 	}
 
 	function animate() {
-
 		requestAnimationFrame( animate );
 
-    //line.rotation.x += 0.01;
-    //line.rotation.y += 0.02;
+		if ( mouth.curve.v1.y >= -5 ) {
+			console.log(mouth.curve.v1.y);
+			mouth.curve.v1.y -= 1;
+			mouth.geometry.verticesNeedUpdate = true;
+		}
 
 		renderer.render( scene, camera );
 

@@ -75,9 +75,12 @@ require( {
 		if ( mouth.curve.v1.y >= -5 ) {
 			console.log(mouth.curve.v1.y);
 			mouth.curve.v1.y -= 1;
-			mouth.geometry.verticesNeedUpdate = true;
+			var newMouthPoints = mouth.curve.getPoints( 50 );
+			mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
+			mouth.geometry.attributes.position.needsUpdate = true;
 		}
 
+		//var mouthGeometry = new THREE.BufferGeometry().setFromPoints( mouthPoints );
 		renderer.render( scene, camera );
 
 	}

@@ -63,6 +63,7 @@ require(
 		scene.add( eyeLeft );
 		scene.add( eyeRight );
 		scene.add( mouth );
+		renderer.render( scene, camera );
 
 	}
 
@@ -70,14 +71,12 @@ require(
 		requestAnimationFrame( animate );
 
 		if ( mouth.curve.v1.y >= -5 ) {
-			console.log(mouth.curve.v1.y);
 			mouth.curve.v1.y -= 1;
 			var newMouthPoints = mouth.curve.getPoints( 50 );
 			mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
 			mouth.geometry.attributes.position.needsUpdate = true;
 		}
 
-		//var mouthGeometry = new THREE.BufferGeometry().setFromPoints( mouthPoints );
 		renderer.render( scene, camera );
 
 	}
@@ -88,3 +87,4 @@ require(
 	return methods;
 
 } );
+

@@ -82,7 +82,7 @@ require(
 	}
 
 	var methods = {
-		animate: animate()
+		animate: animate
 	};
 	return methods;
 

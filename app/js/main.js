@@ -1,18 +1,15 @@
-require( {
-	baseUrl: 'js',
-    // three.js should have UMD support soon, but it currently does not
-	shim: { 'vendor/three': { exports: 'THREE' } }
-}, [
+require( 
+[
 	'vendor/three'
 ], function ( THREE ) {
 
 	var scene, camera, renderer;
 	var mouth;
 
-	init();
+	init();/*
 	setTimeout( function() {
 		animate();
-	}, 20 );
+	}, 20 );*/
 
 	function init() {
 		//initialize scene
@@ -84,5 +81,10 @@ require( {
 		renderer.render( scene, camera );
 
 	}
+
+	var methods = {
+		animate: animate()
+	};
+	return methods;
 
 } );

@@ -1,7 +1,9 @@
 {
     "name": "temp",
     "version": "0.0.0",
-    "dependencies": {},
+    "dependencies": {
+        "requirejs": "^2.3.5"
+    },
     "devDependencies": {
         "grunt": "^0.4.5",
         "grunt-bowercopy": "^1.1.0",

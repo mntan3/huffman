@@ -10,8 +10,8 @@ define ( function(require) {
 		if ( talkPhrase === 'hi' )
 		{
 			console.log( 'animate!' );
-			//var robot = require('./code');
-			//console.log(robot);
+			var robot = require('./animate');
+			console.log(robot);
 			//robot.animate();
 		}
 	}

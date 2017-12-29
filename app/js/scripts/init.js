@@ -57,10 +57,9 @@ define(['three'], function ( THREE ) {
 			scene.add( mouth );
 			renderer.render( scene, camera );
 
-		}
+		},
+		mouth: mouth
 	};
-	console.log("method");
-	console.log(method);
 	return method;
 
 

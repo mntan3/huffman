@@ -9,13 +9,16 @@ define ( function(require) {
 	function parseInput() {
 		console.log( "Parsing input" );
 		var talkPhrase = document.getElementById('talkText').value;	
+		console.log( talkPhrase );
 		if ( talkPhrase === 'hi' )
 		{
-			console.log( 'animate!' );
 			var robot = require('./animate');
-			console.log(robot);
 			robot.smile();
-			//robot.animate();
+		}
+		else if ( talkPhrase === 'bad robot' )
+		{
+			var robot = require('./animate');
+			robot.frown();
 		}
 	}
 	document.getElementById('talkButton').onclick = parseInput;

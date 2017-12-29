@@ -5,22 +5,31 @@ define( function ( require ) {
 	var renderer = robotInfo[1];
 	var scene = robotInfo[2];
 	var camera = robotInfo[3];
-	console.log(mouth);
-	console.log(renderer);
-	console.log(scene);
 	
 	methods = {
 		smile: function() {
-			requestAnimationFrame( arguments.callee );
-
     		if ( mouth.curve.v1.y >= -5 ) {
+				requestAnimationFrame( arguments.callee );
+				console.log( "SMILING" );
         		mouth.curve.v1.y -= 1;
         		var newMouthPoints = mouth.curve.getPoints( 50 );
         		mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
         		mouth.geometry.attributes.position.needsUpdate = true;
+    			renderer.render( scene, camera );
     	
 			}
-    		renderer.render( scene, camera );
+		}, 
+		frown: function() {
+
+			if ( mouth.curve.v1.y <= 3) {
+				requestAnimationFrame( arguments.callee );
+				console.log( "FROWNING");
+				mouth.curve.v1.y += 1;
+				var newMouthPoints = mouth.curve.getPoints( 50 );
+				mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
+				mouth.geometry.attributes.position.needsUpdate = true;
+				renderer.render( scene, camera );
+			}
 		}
 	}
 	return methods;

@@ -7,7 +7,8 @@ requirejs.config({
     baseUrl: 'js/vendor',
     paths: {
         scripts: '../scripts'
-    }
+    }, 
+	shim: { 'vendor/three': { exports: 'THREE' } }
 });
 
 // Start loading the main app file. Put all of

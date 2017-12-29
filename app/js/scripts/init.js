@@ -56,9 +56,9 @@ define(['three'], function ( THREE ) {
 			scene.add( eyeRight );
 			scene.add( mouth );
 			renderer.render( scene, camera );
+			return [mouth, renderer, scene, camera];
 
-		},
-		mouth: mouth
+		}
 	};
 	return method;
 

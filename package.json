@@ -2,7 +2,8 @@
     "name": "temp",
     "version": "0.0.0",
     "dependencies": {
-        "requirejs": "^2.3.5"
+        "requirejs": "^2.3.5",
+        "sentiment": "^4.1.0"
     },
     "devDependencies": {
         "grunt": "^0.4.5",

@@ -1,4 +1,4 @@
-define( function ( require ) {
+define(function ( require ) {
 	var robotFace = require('./init');
 	var robotInfo= robotFace.initFace();
 	var mouth = robotInfo[0];
@@ -10,7 +10,6 @@ define( function ( require ) {
 		smile: function() {
     		if ( mouth.curve.v1.y >= -5 ) {
 				requestAnimationFrame( arguments.callee );
-				console.log( "SMILING" );
         		mouth.curve.v1.y -= 1;
         		var newMouthPoints = mouth.curve.getPoints( 50 );
         		mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
@@ -23,7 +22,6 @@ define( function ( require ) {
 
 			if ( mouth.curve.v1.y <= 3) {
 				requestAnimationFrame( arguments.callee );
-				console.log( "FROWNING");
 				mouth.curve.v1.y += 1;
 				var newMouthPoints = mouth.curve.getPoints( 50 );
 				mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );

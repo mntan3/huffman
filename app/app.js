@@ -8,9 +8,11 @@ requirejs.config({
     paths: {
         scripts: '../scripts'
     }, 
-	shim: { 'three': { exports: 'THREE' } }
+	shim: { 'three': { exports: 'THREE' } 
+	},
+	nodeRequire: require
 });
 
 // Start loading the main app file. Put all of
 // your application logic in there.
-requirejs(['scripts/main']);
+requirejs(['scripts/main','sentiment']);

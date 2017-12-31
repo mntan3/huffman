@@ -1,0 +1,13 @@
+var mongoose = require('mongoose');
+
+var Schema = mongoose.Schema;
+
+var robotSchema = new Schema({
+	happy: {
+		type: Number
+	}
+});
+
+var Robot = mongoose.model('Robot', robotSchema);
+
+module.exports = Robot;

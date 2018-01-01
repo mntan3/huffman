@@ -1,22 +1,17 @@
-define ( function(require) {
-	console.log(" Calling main ");
-	function parseInput() {
-		console.log( "Parsing input" );
-		var sentiment = require("sentiment");
-		console.log( typeof sentiment );
+function parseInput() {
+	console.log( "Parsing input" );
 
-		var talkPhrase = document.getElementById('talkText').value;	
-		document.getElementById('talkText').value = "";
-		if ( talkPhrase === 'hi' )
-		{
-			var robot = require('./animate');
-			robot.smile();
-		}
-		else if ( talkPhrase === 'bad robot' )
-		{
-			var robot = require('./animate');
-			robot.frown();
-		}
+	var talkPhrase = document.getElementById('talkText').value;	
+	document.getElementById('talkText').value = "";
+	if ( talkPhrase === 'hi' )
+	{
+		smile();
 	}
-	document.getElementById('talkButton').onclick = parseInput;
-} );
+	else if ( talkPhrase === 'bad robot' )
+	{
+		frown();
+	}
+}
+
+document.getElementById('talkButton').onclick = parseInput;
+parseInput();

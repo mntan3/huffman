@@ -51,6 +51,7 @@ scene.add( mouth );
 renderer.render( scene, camera );
 
 function moveMouth( happy ) {
+	happy = Math.max(-10, Math.min(happy, 10));
 	function mouthMove() {
 		if ( mouth.curve.v1.y != happy ) {
 			requestAnimationFrame( arguments.callee );

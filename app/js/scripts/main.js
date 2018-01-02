@@ -12,5 +12,11 @@ function parseInput() {
 }
 
 document.getElementById('talkButton').onclick = parseInput;
-//sentiment("asdfds");
+
+document.getElementById('talkText').onkeydown = function(event) {
+    if (event.keyCode == 13) {
+        parseInput();
+    }
+}
+
 parseInput();

@@ -50,25 +50,22 @@ scene.add( eyeRight );
 scene.add( mouth );
 renderer.render( scene, camera );
 
-function smile() {
-	if ( mouth.curve.v1.y >= -5 ) {
-    	requestAnimationFrame( arguments.callee );
-    	mouth.curve.v1.y -= 1;
-    	var newMouthPoints = mouth.curve.getPoints( 50 );       
-    	mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
-    	mouth.geometry.attributes.position.needsUpdate = true;
-    	renderer.render( scene, camera );
+function moveMouth( happy ) {
+	function mouthMove() {
+		console.log(mouth.curve.v1.y);
+		if ( mouth.curve.v1.y != happy ) {
+			requestAnimationFrame( arguments.callee );
+			if ( mouth.curve.v1.y > happy) {
+    			mouth.curve.v1.y -= 1;
+			} else {
+				mouth.curve.v1.y += 1;
+			}
+    		var newMouthPoints = mouth.curve.getPoints( 50 );       
+    		mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
+    		mouth.geometry.attributes.position.needsUpdate = true;
+    		renderer.render( scene, camera );
    
-    }
-}
-
-function frown() {
-	if ( mouth.curve.v1.y <= 3) {
-		requestAnimationFrame( arguments.callee );
-		mouth.curve.v1.y += 1;
-		var newMouthPoints = mouth.curve.getPoints( 50 );
-		mouth.geometry = mouth.geometry.setFromPoints( newMouthPoints );
-		mouth.geometry.attributes.position.needsUpdate = true;
-		renderer.render( scene, camera );
+    	}
 	}
+	mouthMove();
 }

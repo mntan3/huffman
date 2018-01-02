@@ -3,13 +3,14 @@ function parseInput() {
 
 	var talkPhrase = document.getElementById('talkText').value;	
 	document.getElementById('talkText').value = "";
+	var emotion = sentiment(talkPhrase);
 	if ( talkPhrase === 'hi' )
 	{
-		smile();
+		moveMouth(-2);
 	}
 	else if ( talkPhrase === 'bad robot' )
 	{
-		frown();
+		moveMouth(-4);
 	}
 }
 

@@ -17,7 +17,7 @@ document.body.appendChild( renderer.domElement );
 var eyeRadius = 4;
 var eyeColor = 0x000000;
 var eyeX = 8;
-var eyeY = 10;
+var eyeY = 12;
 var eyeZ = 0;
 		
 var eyeCircle1 = new THREE.CircleGeometry( eyeRadius, 32 );
@@ -31,9 +31,9 @@ eyeRight.position.set( eyeX, eyeY, eyeZ );
 //Make mouth
 var mouthColor = 0x000000;
 var mouthCurve = new THREE.QuadraticBezierCurve(
-	new THREE.Vector2( -10, -2),
-	new THREE.Vector2( 0, -2 ),
-	new THREE.Vector2( 10, -2 )
+	new THREE.Vector2( -10, 0),
+	new THREE.Vector2( 0, 0 ),
+	new THREE.Vector2( 10, 0 )
 );
 var mouthPoints = mouthCurve.getPoints( 50 );
 var mouthGeometry = new THREE.BufferGeometry().setFromPoints( mouthPoints );
@@ -52,7 +52,6 @@ renderer.render( scene, camera );
 
 function moveMouth( happy ) {
 	function mouthMove() {
-		console.log(mouth.curve.v1.y);
 		if ( mouth.curve.v1.y != happy ) {
 			requestAnimationFrame( arguments.callee );
 			if ( mouth.curve.v1.y > happy) {

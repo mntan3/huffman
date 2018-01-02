@@ -4,13 +4,10 @@ function parseInput() {
 	var talkPhrase = document.getElementById('talkText').value;	
 	document.getElementById('talkText').value = "";
 	var emotion = sentiment(talkPhrase);
-	if ( talkPhrase === 'hi' )
-	{
-		moveMouth(-2);
-	}
-	else if ( talkPhrase === 'bad robot' )
-	{
-		moveMouth(-4);
+	console.log(talkPhrase);
+	console.log(emotion.score);
+	if (talkPhrase != "") {
+		moveMouth(-1 * emotion.score);
 	}
 }
 

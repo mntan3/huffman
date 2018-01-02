@@ -3,7 +3,6 @@ function parseInput() {
 
 	var talkPhrase = document.getElementById('talkText').value;	
 	document.getElementById('talkText').value = "";
-	console.log( typeof sentiment );
 	if ( talkPhrase === 'hi' )
 	{
 		smile();
@@ -15,4 +14,5 @@ function parseInput() {
 }
 
 document.getElementById('talkButton').onclick = parseInput;
+//sentiment("asdfds");
 parseInput();
